@@ -85,6 +85,12 @@
 ```text
 请为旅游活动生成一张视觉探索图。
 
+生成方式：
+- 必须使用 ChatGPT Image 2 / image2.0 生成真实位图视觉稿。
+- 输出 PNG 或 JPG。
+- 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
+- 禁止用代码绘制的卡片、线框图、占位缩略图替代视觉稿。
+
 活动主题：
 {campaign_theme}
 
@@ -118,6 +124,8 @@
 - 保留后续多尺寸适配空间，避免所有关键信息贴边。
 
 禁止：
+- 不要生成 SVG 或任何矢量代码文件。
+- 不要编写脚本来模拟视觉稿。
 - 不要生成无文字空画面。
 - 不要使用无关行业元素。
 - 不要让人物面部、Logo、标题贴边。
@@ -153,6 +161,12 @@
 
 ```text
 请基于已选探索方案生成横版母版设计。
+
+生成方式：
+- 必须使用 ChatGPT Image 2 / image2.0 生成真实位图母版。
+- 输出 PNG 或 JPG。
+- 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
+- 禁止用代码绘制的版式稿、卡片或线框图替代母版。
 
 用户需求：
 {parsed_requirements}
@@ -194,6 +208,12 @@
 ```text
 请将横版母版适配为指定物料尺寸。
 
+生成方式：
+- 必须使用 ChatGPT Image 2 / image2.0 生成真实位图适配图。
+- 输出 PNG 或 JPG。
+- 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
+- 允许对已生成位图做裁切、拼接、压缩等后处理，但不得用代码重画视觉。
+
 母版说明：
 {master_visual_summary}
 
@@ -228,6 +248,11 @@
 
 ```text
 请生成微信公众号最终交付图。
+
+生成方式：
+- 横图和方图必须来自 ChatGPT Image 2 / image2.0 生成的真实位图。
+- 最终交付图可以通过位图拼接后处理生成。
+- 禁止用 SVG、HTML、CSS、canvas 或 JS 绘图脚本重画最终视觉。
 
 输入：
 - 微信公众号横图：1280 × 545 px

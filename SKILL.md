@@ -1,6 +1,6 @@
 ---
 name: travel-campaign-materials
-description: Use this skill when creating tourism campaign design materials from a brief, especially Chinese travel vertical node campaigns that require style exploration, visual exploration, user approval or automatic decision mode, master visual design, and multi-size adaptation using a maintained style library and fixed material specifications.
+description: Use this skill when creating tourism campaign design materials from a brief, especially Chinese travel vertical node campaigns that require raster image generation with ChatGPT Image 2 / image2.0, style exploration, visual exploration, user approval or automatic decision mode, master visual design, and multi-size adaptation using a maintained style library and fixed material specifications.
 ---
 
 # Travel Campaign Materials
@@ -48,6 +48,26 @@ Follow this order:
 8. Adapt the master visual to the fixed material sizes.
 9. Check safety zones, readability, and element overlap.
 10. Deliver final files and a concise output list.
+
+## Image Generation Hard Rules
+
+This skill is for real bitmap campaign visuals, not code-drawn mockups.
+
+For any exploration image, master visual, adapted material, or final delivery image:
+
+- Use ChatGPT Image 2 / image2.0 through the available image generation capability.
+- Prefer the built-in `image_gen` tool when available.
+- Output raster images such as PNG or JPG.
+- Do not create SVG, HTML, CSS, canvas, Mermaid, PDF, or JS-generated drawings as substitutes for visual designs.
+- Do not write scripts such as `generate-explorations.js` to draw placeholder cards, vector layouts, or synthetic mockups.
+- Do not satisfy visual-generation steps with text-only plans, wireframes, or thumbnails.
+- If the environment cannot access image generation, stop and tell the user that image generation is unavailable instead of fabricating visuals in code.
+
+Allowed non-image-model processing:
+
+- Renaming, moving, copying, compressing, or stitching already generated bitmap images.
+- Creating contact sheets only from real generated bitmap images.
+- Recording prompts, decisions, and output metadata in Markdown or JSON.
 
 ## approval_mode
 
