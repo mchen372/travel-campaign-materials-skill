@@ -1,0 +1,192 @@
+---
+name: travel-campaign-materials
+description: Use this skill when creating tourism campaign design materials from a brief, especially Chinese travel vertical node campaigns that require style exploration, visual exploration, user approval or automatic decision mode, master visual design, and multi-size adaptation using a maintained style library and fixed material specifications.
+---
+
+# Travel Campaign Materials
+
+This skill helps an AI agent produce a full set of tourism campaign materials from a short user brief, such as "毕业旅行季" or "夏日出游季".
+
+Use it for:
+
+- Travel vertical campaign posters, banners, opening screens, social posters, WeChat assets, push images, and internal banners.
+- Workflows that need style exploration, visual exploration, master visual design, and multi-size adaptation.
+- Requests where the user wants an agent to use a maintained style library instead of inventing styles freely.
+
+Do not use it for:
+
+- Generic UI screens or app product design.
+- One-off image generation unrelated to tourism campaign materials.
+- Final production when the user only wants to discuss strategy and explicitly says not to create assets yet.
+
+## Required References
+
+Load references only when needed:
+
+- `references/workflow.md`: read when planning or executing the full workflow.
+- `references/style-library.md`: read before choosing, explaining, or generating style directions.
+- `references/material-spec.md`: read before multi-size adaptation or final delivery.
+- `references/prompt-templates.md`: read when a concrete prompt is needed for demand parsing, exploration generation, master visual generation, adaptation, or safety checking.
+
+Use local visual references from:
+
+```text
+style-library/
+```
+
+## Core Workflow
+
+Follow this order:
+
+1. Parse the user brief.
+2. Determine `approval_mode`.
+3. Choose style directions from the style library.
+4. Generate style and visual explorations.
+5. Number exploration outputs as `1.1`, `1.2`, `2.1`, etc.
+6. Ask the user to choose, unless `approval_mode = auto`.
+7. Create a horizontal master visual with real title text.
+8. Adapt the master visual to the fixed material sizes.
+9. Check safety zones, readability, and element overlap.
+10. Deliver final files and a concise output list.
+
+## approval_mode
+
+Default:
+
+```text
+approval_mode = ask_user
+```
+
+Set:
+
+```text
+approval_mode = auto
+```
+
+if the initial brief includes expressions such as:
+
+- 无需询问
+- 不用问我
+- 你来定
+- 自动决定
+- 直接做
+- 直接输出
+
+In `ask_user` mode, ask for user approval at key decision points.
+
+In `auto` mode, do not stop for approval; choose automatically and record the chosen option and reason.
+
+If the user changes mode mid-workflow, follow the newest instruction.
+
+## Exploration Defaults
+
+Default exploration count:
+
+```text
+3 styles × 5 visual directions = 15 exploration images
+```
+
+If the user specifies one style:
+
+```text
+1 style × 5 visual directions = 5 exploration images
+```
+
+Number outputs as:
+
+```text
+style_number.visual_number
+```
+
+Examples:
+
+- `1.1`: style 1, visual 1
+- `1.5`: style 1, visual 5
+- `2.3`: style 2, visual 3
+
+Allow users to choose or combine directions, such as:
+
+- `2.3`
+- `2.3 + 1.4`
+- `2.3构图 + 1.2色彩 + 3.1字体`
+
+## Style Rules
+
+Only choose from maintained style types unless the user explicitly asks to add a new style.
+
+Current style types:
+
+- 手帐拼贴风
+- 电商大字报风
+- 电影实景风
+- 运营3D风
+- 手绘风
+- 微软风
+- 新中式
+
+Before style selection or generation, read `references/style-library.md`.
+
+When generating explorations, use matching images from `style-library/` as style references where the available tool or environment supports references.
+
+## Master Visual Rules
+
+The master visual is the source design for downstream adaptation.
+
+Default rules:
+
+- Use a horizontal master visual by default.
+- Include real title text; do not create an empty visual-only image.
+- Include optional modules only when useful: subtitle, benefit points, event tag, button, QR code, logo.
+- Record which modules may be hidden in smaller sizes.
+- In `ask_user` mode, show the master visual and ask for confirmation.
+- In `auto` mode, continue and record the reason.
+
+## Multi-Size Adaptation Rules
+
+Before adapting sizes, read `references/material-spec.md`.
+
+Adapt from the master visual instead of redesigning each size from scratch.
+
+Use one of three strategies:
+
+- Same-ratio scaling: for sizes close to the master ratio.
+- Layout reconstruction: for vertical, square, or very different ratios.
+- Module cropping/hiding: for small or constrained sizes.
+
+Always check:
+
+- Safety zones.
+- Title readability.
+- Logo placement.
+- Important face or destination landmark cropping.
+- Button, QR code, and benefit-point spacing.
+- Text and element overlap.
+
+## WeChat Delivery Rule
+
+For WeChat public account materials:
+
+- Create `1280 × 545 px` horizontal image.
+- Create `545 × 545 px` square image.
+- Final delivery requires one stitched image: `1825 × 545 px`.
+- Place the horizontal image on the left.
+- Place the square image on the right.
+
+See `references/material-spec.md` for the detailed rule.
+
+## Output Record
+
+For every run, record:
+
+- Original user brief.
+- Parsed requirements.
+- `approval_mode`.
+- Candidate style directions.
+- Generated exploration numbers.
+- User-selected or auto-selected number.
+- Master visual decision.
+- Adapted material list.
+- Safety-check result.
+- Final delivery file list.
+
+Keep the user-facing response concise: summarize what was created, where it is saved, and any unresolved confirmation items.

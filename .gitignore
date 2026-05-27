@@ -1,0 +1,7 @@
+.DS_Store
+
+# Generated previews and run outputs
+outputs/
+
+# Local download logs/manifests may contain internal URLs or signed parameters
+style-library/download-*.json
