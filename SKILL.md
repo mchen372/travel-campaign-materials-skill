@@ -40,14 +40,15 @@ Follow this order:
 
 1. Parse the user brief.
 2. Determine `approval_mode`.
-3. Choose style directions from the style library.
-4. Generate style and visual explorations.
-5. Number exploration outputs as `1.1`, `1.2`, `2.1`, etc.
-6. Ask the user to choose, unless `approval_mode = auto`.
-7. Create a horizontal master visual with real title text.
-8. Adapt the master visual to the fixed material sizes.
-9. Check safety zones, readability, and element overlap.
-10. Deliver final files and a concise output list.
+3. Present 3-5 candidate style directions from the style library.
+4. Ask the user to choose one style, unless `approval_mode = auto`.
+5. Generate 5 visual explorations only for the selected style.
+6. Number visual exploration outputs as `1.1`, `1.2`, etc.
+7. Ask the user to choose one visual direction, unless `approval_mode = auto`.
+8. Create a horizontal master visual with real title text.
+9. Adapt the master visual to the fixed material sizes.
+10. Check safety zones, readability, and element overlap.
+11. Deliver final files and a concise output list.
 
 ## Image Generation Hard Rules
 
@@ -100,17 +101,23 @@ If the user changes mode mid-workflow, follow the newest instruction.
 
 ## Exploration Defaults
 
-Default exploration count:
+Style exploration:
 
 ```text
-3 styles × 5 visual directions = 15 exploration images
+3-5 candidate style directions
 ```
 
-If the user specifies one style:
+In `ask_user` mode, show the candidate style directions and representative style-library images, then wait for the user to choose one style.
+
+In `auto` mode, choose one style automatically from the 3-5 candidates and record the reason.
+
+Visual exploration:
 
 ```text
-1 style × 5 visual directions = 5 exploration images
+1 selected style × 5 visual directions = 5 exploration images
 ```
+
+Never generate a 15-image batch across multiple styles. The workflow is sequential: first decide the style, then generate visual directions for that one style.
 
 Number outputs as:
 
@@ -122,13 +129,13 @@ Examples:
 
 - `1.1`: style 1, visual 1
 - `1.5`: style 1, visual 5
-- `2.3`: style 2, visual 3
+- `2.3`: only valid when style 2 was selected first, visual 3
 
 Allow users to choose or combine directions, such as:
 
 - `2.3`
-- `2.3 + 1.4`
-- `2.3构图 + 1.2色彩 + 3.1字体`
+- `2.3 + 2.4`
+- `2.3构图 + 2.2色彩 + 2.1字体`
 
 ## Style Rules
 
@@ -145,6 +152,8 @@ Current style types:
 - 新中式
 
 Before style selection or generation, read `references/style-library.md`.
+
+Style selection must be completed before visual exploration begins.
 
 When generating explorations, use matching images from `style-library/` as style references where the available tool or environment supports references.
 
