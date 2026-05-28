@@ -54,7 +54,7 @@ Follow this order:
 
 This skill is for real bitmap campaign visuals, not code-drawn mockups.
 
-For any exploration image, master visual, adapted material, or final delivery image:
+For any style preview image, exploration image, master visual, adapted material, or final delivery image:
 
 - Use ChatGPT Image 2 / image2.0 through the available image generation capability.
 - Prefer the built-in `image_gen` tool when available.
@@ -104,12 +104,14 @@ If the user changes mode mid-workflow, follow the newest instruction.
 Style exploration:
 
 ```text
-3-5 candidate style directions
+3-5 candidate style directions, each with one theme-specific style preview image
 ```
 
-In `ask_user` mode, show the candidate style directions and representative style-library images, then wait for the user to choose one style.
+In `ask_user` mode, show 3-5 theme-specific style preview images, candidate style names, and reasons, then wait for the user to choose one style.
 
 In `auto` mode, choose one style automatically from the 3-5 candidates and record the reason.
+
+Style preview images are generated for the current brief. They must not be raw style-library reference images. Use style-library images only as style references and evidence for why the style was selected.
 
 Visual exploration:
 
@@ -154,6 +156,8 @@ Current style types:
 Before style selection or generation, read `references/style-library.md`.
 
 Style selection must be completed before visual exploration begins.
+
+During style selection, generate one theme-specific preview image for each candidate style using the current campaign theme, title, audience, and mood. These previews help the user judge style fit; they are not the 5 visual exploration images.
 
 When generating explorations, use matching images from `style-library/` as style references where the available tool or environment supports references.
 
@@ -211,6 +215,7 @@ For every run, record:
 - Parsed requirements.
 - `approval_mode`.
 - Candidate style directions.
+- Generated style preview images.
 - Generated exploration numbers.
 - User-selected or auto-selected number.
 - Master visual decision.
