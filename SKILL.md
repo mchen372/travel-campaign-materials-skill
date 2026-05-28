@@ -41,16 +41,17 @@ Follow this order:
 1. Parse the user brief.
 2. Determine `approval_mode`.
 3. Present 3-5 candidate style directions from the style library.
-4. Ask the user to choose one style, unless `approval_mode = auto`.
-5. Generate 5 visual explorations only for the selected style.
-6. Number visual exploration outputs as `1.1`, `1.2`, etc.
-7. Ask the user to choose one visual direction, unless `approval_mode = auto`.
-8. Create a horizontal master visual with real title text.
-9. Adapt the master visual to the fixed material sizes.
-10. For splash/opening-screen materials, split the design into animation-ready layers and provide animation suggestions.
-11. Check safety zones, readability, and element overlap.
-12. Produce an overall retrospective.
-13. Deliver final files and a concise output list.
+4. Visually inspect the concrete style-library reference images for each candidate style and write a reference visual audit.
+5. Ask the user to choose one style, unless `approval_mode = auto`.
+6. Generate 5 visual explorations only for the selected style.
+7. Number visual exploration outputs as `1.1`, `1.2`, etc.
+8. Ask the user to choose one visual direction, unless `approval_mode = auto`.
+9. Create a horizontal master visual with real title text.
+10. Adapt the master visual to the fixed material sizes.
+11. For splash/opening-screen materials, split the design into animation-ready layers and provide animation suggestions.
+12. Check safety zones, readability, and element overlap.
+13. Produce an overall retrospective.
+14. Deliver final files and a concise output list.
 
 ## Image Generation Hard Rules
 
@@ -179,14 +180,42 @@ Before generating any style preview image, visual exploration image, or master v
 
 - Select 2-4 concrete reference images from the matching `style-library/` style folder.
 - Record the exact reference image paths in the output record.
+- Visually open and inspect the selected images with the available image viewing or vision capability.
 - Treat the selected images as knowledge references only: inspect them, learn from them, and abstract their reusable style traits.
 - Do not use style-library images as init images, edit bases, image-to-image sources, trace targets, or direct visual copies.
 - Do not ask the image model to recreate, modify, continue, or closely imitate any specific reference image.
-- Explicitly summarize reusable high-level traits from the references: composition logic, palette range, typography mood, texture language, lighting, layout rhythm, and density.
-- The prompt must include both the current campaign brief and the extracted traits from the selected reference images.
+- Write a reference visual audit before any generation prompt.
+- Explicitly summarize reusable high-level traits from the references: composition logic, palette range, typography mood, texture language, lighting, depth, layout rhythm, and density.
+- The prompt must include both the current campaign brief and the reference visual audit.
 - If no usable reference images exist for the selected style, stop and tell the user that the style library is missing references instead of generating from the style name alone.
+- If the agent cannot open or visually inspect the selected reference images, stop and ask the user to upload references or provide accessible images. Do not pretend the references were reviewed.
 
 When generating explorations, use the selected style-library references as a knowledge anchor. The style name is only a label; the abstracted traits from reference images define the style. Preserve originality and avoid outputs that are substantially similar to any one reference.
+
+## Reference Visual Audit Gate
+
+This gate is mandatory for style preview images, visual exploration images, and the master visual.
+
+For each selected reference image, record:
+
+- Reference image path.
+- Composition and layout structure.
+- Palette and contrast behavior.
+- Typography treatment, if any.
+- Texture, material, and image language.
+- Lighting, depth, and realism or illustration treatment.
+- Visual density, rhythm, and hierarchy.
+- Abstract traits to borrow.
+- Specific details not to copy.
+
+Then synthesize a style-level audit:
+
+- What makes this style look high-quality.
+- How to translate those traits to the current campaign theme.
+- How title text should be integrated without reducing readability.
+- Which failure modes to avoid.
+
+Generation is not allowed until the reference visual audit exists. File names, folder names, style labels, or written style descriptions are not enough evidence.
 
 ## Master Visual Rules
 
@@ -289,6 +318,7 @@ For every run, record:
 - Candidate style directions.
 - Generated style preview images.
 - Style-library reference image paths used for each preview, exploration, and master visual.
+- Reference visual audit for each selected style and generation stage.
 - Generated exploration numbers.
 - User-selected or auto-selected number.
 - Master visual decision.
