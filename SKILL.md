@@ -47,8 +47,10 @@ Follow this order:
 7. Ask the user to choose one visual direction, unless `approval_mode = auto`.
 8. Create a horizontal master visual with real title text.
 9. Adapt the master visual to the fixed material sizes.
-10. Check safety zones, readability, and element overlap.
-11. Deliver final files and a concise output list.
+10. For splash/opening-screen materials, split the design into animation-ready layers and provide animation suggestions.
+11. Check safety zones, readability, and element overlap.
+12. Produce an overall retrospective.
+13. Deliver final files and a concise output list.
 
 ## Image Generation Hard Rules
 
@@ -247,8 +249,11 @@ Recommended stage values:
 - `master`
 - `adaptation`
 - `wechat-stitch`
+- `layer-split`
+- `animation-guide`
 - `contact-sheet`
 - `report`
+- `retrospective`
 
 Examples:
 
@@ -256,8 +261,11 @@ Examples:
 - `duanwu_trip_visual-exploration_2-3_16x9_v01.png`
 - `duanwu_trip_master_16x9_v01.png`
 - `duanwu_trip_adaptation_splash_1242x2208_v01.png`
+- `duanwu_trip_layer-split_splash_v01.md`
+- `duanwu_trip_animation-guide_splash_v01.md`
 - `duanwu_trip_wechat-stitch_1825x545_v01.png`
 - `duanwu_trip_report_v01.md`
+- `duanwu_trip_retrospective_v01.md`
 
 After using image generation, move or copy generated images into the campaign output folder with these names before presenting them to the user. Keep the original default-name file only if needed for debugging; do not list it as a deliverable.
 
@@ -275,7 +283,10 @@ For every run, record:
 - User-selected or auto-selected number.
 - Master visual decision.
 - Adapted material list.
+- Splash layer split list, if splash/opening-screen material is included.
+- Splash animation suggestions, if splash/opening-screen material is included.
 - Safety-check result.
+- Overall retrospective.
 - Final delivery file list.
 - Final file names and paths using the output naming rules.
 

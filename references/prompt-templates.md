@@ -370,7 +370,64 @@
 2. 拼接检查结果
 ```
 
-## 9. 安全区检查模板
+## 9. 开屏拆层与动画建议模板
+
+```text
+请基于已完成的开屏物料，整理图层拆分说明和动画建议。
+
+开屏物料：
+{splash_image}
+
+活动主题：
+{campaign_theme}
+
+母版说明：
+{master_visual_summary}
+
+开屏尺寸与安全区：
+{splash_size_and_safety_rules}
+
+页面模块：
+{modules}
+
+输出文件命名：
+- 拆层说明：{campaign_slug}_layer-split_splash_v01.md
+- 动画建议：{campaign_slug}_animation-guide_splash_v01.md
+
+请输出拆层清单：
+1. 图层名称
+2. 图层内容
+3. 建议边界 / 位置
+4. 层级顺序
+5. 是否可动
+6. 注意事项
+
+建议图层：
+- bg
+- main-visual
+- decor
+- title
+- subtitle
+- brand
+- cta
+
+请输出动画建议：
+1. 推荐动画方案
+2. 入场顺序
+3. 每层动画方式
+4. 建议时长
+5. 延迟 / 缓动
+6. 是否循环
+7. 动效风险
+
+规则：
+- 如果无法导出真实 PSD 或图层源文件，必须说明这是“拆层说明与动画制作建议”，不是实际 PSD。
+- 不得建议标题、Logo、按钮做大幅位移或进入安全区。
+- 动画应服务信息层级和活动氛围，不要过度炫技。
+- 必须保留主标题可读性和品牌识别。
+```
+
+## 10. 安全区检查模板
 
 ```text
 请检查以下物料是否符合安全区和可读性规范。
@@ -402,7 +459,62 @@
 - 修改建议
 ```
 
-## 10. 最终交付总结模板
+## 11. 整体复盘模板
+
+```text
+请对本次旅游活动物料生成进行整体复盘。
+
+原始需求：
+{user_brief}
+
+需求解析：
+{parsed_requirements}
+
+approval_mode：
+{approval_mode}
+
+风格选择记录：
+{style_selection_record}
+
+风格库参考图与抽象特征：
+{style_reference_record}
+
+视觉发散与选择记录：
+{visual_exploration_record}
+
+母版记录：
+{master_visual_record}
+
+多尺寸适配记录：
+{adaptation_record}
+
+开屏拆层与动画建议：
+{splash_layer_animation_record}
+
+安全区检查结果：
+{safety_check_summary}
+
+输出文件：
+{output_files}
+
+请输出：
+1. 本轮完成内容
+2. 关键决策回顾
+3. 参考风格如何被抽象使用
+4. 各阶段产出清单
+5. 开屏拆层和动画建议摘要，如涉及
+6. 质量检查结论
+7. 已知问题和风险
+8. 下一轮优化建议
+
+要求：
+- 复盘要具体，不要只写“效果良好”。
+- 风险必须如实列出。
+- 面向下一轮迭代，不要写成营销文案。
+- 输出文件命名为：{campaign_slug}_retrospective_v01.md。
+```
+
+## 12. 最终交付总结模板
 
 ```text
 请整理本次旅游活动物料生成结果。
@@ -429,11 +541,19 @@ approval_mode：
 安全区检查结果：
 {safety_check_summary}
 
+开屏拆层与动画建议：
+{splash_layer_animation_summary}
+
+整体复盘：
+{retrospective_summary}
+
 请输出：
 1. 已完成内容
 2. 文件位置
-3. 需要用户确认的问题，如有
-4. 后续可迭代方向，如有
+3. 开屏拆层与动画建议文件位置，如涉及
+4. 整体复盘文件位置
+5. 需要用户确认的问题，如有
+6. 后续可迭代方向，如有
 
 要求：
 - 简洁。
