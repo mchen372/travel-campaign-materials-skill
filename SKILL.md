@@ -40,7 +40,7 @@ Follow this order:
 
 1. Parse the user brief.
 2. Determine `approval_mode`.
-3. Present 3-5 candidate style directions from the style library.
+3. Present up to 3-5 quality-approved candidate style directions from the style library.
 4. Ask the user to choose one style, unless `approval_mode = auto`.
 5. Generate 5 visual explorations only for the selected style.
 6. Number visual exploration outputs as `1.1`, `1.2`, etc.
@@ -106,12 +106,12 @@ If the user changes mode mid-workflow, follow the newest instruction.
 Style exploration:
 
 ```text
-3-5 candidate style directions, each with one theme-specific style preview image
+Up to 3-5 quality-approved candidate style directions, each with one theme-specific style preview image
 ```
 
-In `ask_user` mode, show 3-5 theme-specific style preview images, candidate style names, and reasons, then wait for the user to choose one style.
+In `ask_user` mode, show the quality-approved theme-specific style preview images, candidate style names, and reasons, then wait for the user to choose one style.
 
-In `auto` mode, choose one style automatically from the 3-5 candidates and record the reason.
+In `auto` mode, choose one style automatically from the quality-approved candidates and record the reason.
 
 Style preview images are generated for the current brief. They must not be raw style-library reference images. Use style-library images only as style references and evidence for why the style was selected.
 
@@ -160,6 +160,19 @@ Before style selection or generation, read `references/style-library.md`.
 Style selection must be completed before visual exploration begins.
 
 During style selection, generate one theme-specific preview image for each candidate style using the current campaign theme, title, audience, and mood. These previews help the user judge style fit; they are not the 5 visual exploration images.
+
+Before recommending a style, apply a quality gate. Do not recommend a style just because it exists in the library.
+
+Score each candidate from 1-5 on:
+
+- Reference quality: the selected references are polished, clear, and reusable.
+- Reference consistency: the style has a coherent visual language, not scattered examples.
+- Theme fit: the style can carry the current campaign topic, audience, and mood.
+- Text friendliness: the style can support readable Chinese campaign titles.
+- Material adaptability: the style can survive splash, banner, square, and small-size adaptation.
+- Model robustness: the style is likely to generate stable, non-generic images.
+
+Only recommend styles with an average score of 4 or above. If fewer than 3 styles pass, present fewer candidates and explain why. Mark styles below 4 as experimental or not recommended unless the user explicitly requests them.
 
 ## Style Reference Binding Rules
 
