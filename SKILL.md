@@ -167,12 +167,14 @@ Before generating any style preview image, visual exploration image, or master v
 
 - Select 2-4 concrete reference images from the matching `style-library/` style folder.
 - Record the exact reference image paths in the output record.
-- Use the selected images as image references if the available image generation tool supports image inputs.
-- If direct image references are not supported, inspect the selected reference images and explicitly summarize their composition, palette, typography, texture, lighting, and layout traits in the prompt.
+- Treat the selected images as knowledge references only: inspect them, learn from them, and abstract their reusable style traits.
+- Do not use style-library images as init images, edit bases, image-to-image sources, trace targets, or direct visual copies.
+- Do not ask the image model to recreate, modify, continue, or closely imitate any specific reference image.
+- Explicitly summarize reusable high-level traits from the references: composition logic, palette range, typography mood, texture language, lighting, layout rhythm, and density.
 - The prompt must include both the current campaign brief and the extracted traits from the selected reference images.
 - If no usable reference images exist for the selected style, stop and tell the user that the style library is missing references instead of generating from the style name alone.
 
-When generating explorations, use the selected style-library references as the visual anchor. The style name is only a label; the reference images define the style.
+When generating explorations, use the selected style-library references as a knowledge anchor. The style name is only a label; the abstracted traits from reference images define the style. Preserve originality and avoid outputs that are substantially similar to any one reference.
 
 ## Master Visual Rules
 
