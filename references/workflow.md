@@ -260,6 +260,56 @@ approval_mode:
 - 适配策略
 - 输出文件
 
+## 8.1 输出命名规范
+
+所有用户可见的输出文件必须使用可读命名，不得保留 `ig_*.png`、哈希、随机 ID 或临时文件名。
+
+输出目录：
+
+```text
+outputs/{campaign_slug}_{YYYYMMDD}/
+```
+
+`campaign_slug` 使用小写英文、数字和连字符或下划线。中文活动名需要转写或概括，例如：
+
+- `端午假期出游` -> `duanwu_trip`
+- `毕业旅行季` -> `graduation_trip`
+- `夏日出游季` -> `summer_travel`
+
+文件名格式：
+
+```text
+{campaign_slug}_{stage}_{index_or_material}_{size_or_ratio}_v{version}.{ext}
+```
+
+阶段名：
+
+| 阶段 | stage |
+| --- | --- |
+| 风格预览 | `style-preview` |
+| 视觉发散 | `visual-exploration` |
+| 横版母版 | `master` |
+| 多尺寸适配 | `adaptation` |
+| 微信拼接 | `wechat-stitch` |
+| 总览拼图 | `contact-sheet` |
+| 输出记录 | `report` |
+
+示例：
+
+- `duanwu_trip_style-preview_01_collage-journal_16x9_v01.png`
+- `duanwu_trip_visual-exploration_2-3_16x9_v01.png`
+- `duanwu_trip_master_16x9_v01.png`
+- `duanwu_trip_adaptation_splash_1242x2208_v01.png`
+- `duanwu_trip_wechat-stitch_1825x545_v01.png`
+- `duanwu_trip_report_v01.md`
+
+执行规则：
+
+- 图片生成工具输出的默认文件名只能作为临时文件名。
+- 展示或交付给用户前，必须将文件移动或复制为规范命名。
+- 输出清单必须列出规范文件名和完整路径。
+- 如果某个文件是中间草稿，在文件名中使用 `draft`；最终交付使用 `v01`、`v02` 等版本号。
+
 ## 9. 安全区检查
 
 每个尺寸输出后必须检查：

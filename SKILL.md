@@ -222,6 +222,45 @@ For WeChat public account materials:
 
 See `references/material-spec.md` for the detailed rule.
 
+## Output Naming Rules
+
+Never leave final or user-facing files with tool default names such as `ig_*.png`, hashes, random IDs, or unreadable temp names.
+
+Create one output folder per campaign:
+
+```text
+outputs/{campaign_slug}_{YYYYMMDD}/
+```
+
+Use lowercase ASCII slugs for file names. Transliterate or summarize Chinese campaign names, for example `duanwu_trip`, `graduation_trip`, `summer_travel`.
+
+File naming pattern:
+
+```text
+{campaign_slug}_{stage}_{index_or_material}_{size_or_ratio}_v{version}.{ext}
+```
+
+Recommended stage values:
+
+- `style-preview`
+- `visual-exploration`
+- `master`
+- `adaptation`
+- `wechat-stitch`
+- `contact-sheet`
+- `report`
+
+Examples:
+
+- `duanwu_trip_style-preview_01_collage-journal_16x9_v01.png`
+- `duanwu_trip_visual-exploration_2-3_16x9_v01.png`
+- `duanwu_trip_master_16x9_v01.png`
+- `duanwu_trip_adaptation_splash_1242x2208_v01.png`
+- `duanwu_trip_wechat-stitch_1825x545_v01.png`
+- `duanwu_trip_report_v01.md`
+
+After using image generation, move or copy generated images into the campaign output folder with these names before presenting them to the user. Keep the original default-name file only if needed for debugging; do not list it as a deliverable.
+
 ## Output Record
 
 For every run, record:
@@ -238,5 +277,6 @@ For every run, record:
 - Adapted material list.
 - Safety-check result.
 - Final delivery file list.
+- Final file names and paths using the output naming rules.
 
 Keep the user-facing response concise: summarize what was created, where it is saved, and any unresolved confirmation items.

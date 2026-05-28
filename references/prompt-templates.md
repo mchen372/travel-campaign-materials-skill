@@ -72,6 +72,7 @@
 - 输出 PNG 或 JPG。
 - 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
 - 禁止直接复制或展示风格库原图。
+- 生成后必须重命名为规范文件名，例如 `{campaign_slug}_style-preview_{style_option_id}_{style_slug}_16x9_v01.png`。
 
 活动主题：
 {campaign_theme}
@@ -166,6 +167,7 @@
 - 输出 PNG 或 JPG。
 - 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
 - 禁止用代码绘制的卡片、线框图、占位缩略图替代视觉稿。
+- 生成后必须重命名为规范文件名，例如 `{campaign_slug}_visual-exploration_{option_id}_16x9_v01.png`。
 
 活动主题：
 {campaign_theme}
@@ -253,6 +255,7 @@
 - 输出 PNG 或 JPG。
 - 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
 - 禁止用代码绘制的版式稿、卡片或线框图替代母版。
+- 生成后必须重命名为规范文件名，例如 `{campaign_slug}_master_16x9_v01.png`。
 
 用户需求：
 {parsed_requirements}
@@ -307,6 +310,7 @@
 - 输出 PNG 或 JPG。
 - 禁止输出 SVG、HTML、CSS、canvas、Mermaid、PDF 或 JS 绘图脚本。
 - 允许对已生成位图做裁切、拼接、压缩等后处理，但不得用代码重画视觉。
+- 生成后必须重命名为规范文件名，例如 `{campaign_slug}_adaptation_{material_slug}_{material_size}_v01.png`。
 
 母版说明：
 {master_visual_summary}
@@ -347,6 +351,7 @@
 - 横图和方图必须来自 ChatGPT Image 2 / image2.0 生成的真实位图。
 - 最终交付图可以通过位图拼接后处理生成。
 - 禁止用 SVG、HTML、CSS、canvas 或 JS 绘图脚本重画最终视觉。
+- 拼接后必须重命名为规范文件名，例如 `{campaign_slug}_wechat-stitch_1825x545_v01.png`。
 
 输入：
 - 微信公众号横图：1280 × 545 px
@@ -413,6 +418,13 @@ approval_mode：
 
 输出文件：
 {output_files}
+
+命名规范：
+- 所有用户可见文件必须使用可读文件名。
+- 不得把 `ig_*.png`、哈希、随机 ID 或临时文件名列为最终交付。
+- 输出目录应为：outputs/{campaign_slug}_{YYYYMMDD}/
+- 文件名格式应为：{campaign_slug}_{stage}_{index_or_material}_{size_or_ratio}_v{version}.{ext}
+- 示例：duanwu_trip_visual-exploration_2-3_16x9_v01.png
 
 安全区检查结果：
 {safety_check_summary}
