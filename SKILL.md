@@ -159,7 +159,20 @@ Style selection must be completed before visual exploration begins.
 
 During style selection, generate one theme-specific preview image for each candidate style using the current campaign theme, title, audience, and mood. These previews help the user judge style fit; they are not the 5 visual exploration images.
 
-When generating explorations, use matching images from `style-library/` as style references where the available tool or environment supports references.
+## Style Reference Binding Rules
+
+Do not generate from the style name alone.
+
+Before generating any style preview image, visual exploration image, or master visual:
+
+- Select 2-4 concrete reference images from the matching `style-library/` style folder.
+- Record the exact reference image paths in the output record.
+- Use the selected images as image references if the available image generation tool supports image inputs.
+- If direct image references are not supported, inspect the selected reference images and explicitly summarize their composition, palette, typography, texture, lighting, and layout traits in the prompt.
+- The prompt must include both the current campaign brief and the extracted traits from the selected reference images.
+- If no usable reference images exist for the selected style, stop and tell the user that the style library is missing references instead of generating from the style name alone.
+
+When generating explorations, use the selected style-library references as the visual anchor. The style name is only a label; the reference images define the style.
 
 ## Master Visual Rules
 
@@ -216,6 +229,7 @@ For every run, record:
 - `approval_mode`.
 - Candidate style directions.
 - Generated style preview images.
+- Style-library reference image paths used for each preview, exploration, and master visual.
 - Generated exploration numbers.
 - User-selected or auto-selected number.
 - Master visual decision.
